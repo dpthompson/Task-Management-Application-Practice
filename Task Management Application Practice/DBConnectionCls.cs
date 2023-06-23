@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Task_Management_Application_Practice
 {
@@ -13,7 +14,9 @@ namespace Task_Management_Application_Practice
 
     public static class PIZZAHUT
     {
-        public static SqlConnection DB_Conn = new SqlConnection("Server = demoinitialserver.database.windows.net; Database =InitialTest; User ID = dpthompson21; Password =Divad#1267");
+        public static string txtpassword = File.ReadAllText("C:/Users/msi3070/Documents/Visual Studio 2019/SQL_PASS.txt");//get password from local txt file
+        public static string server = File.ReadAllText("C:/Users/msi3070/Documents/Visual Studio 2019/Conn.txt");//get server location from local txt file
+        public static SqlConnection DB_Conn = new SqlConnection("Server = " + server + "; Database =InitialTest; User ID = dpthompson21; Password =" + txtpassword);
     }
     
     public static class SQLQuery
