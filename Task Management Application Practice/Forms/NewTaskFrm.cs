@@ -48,9 +48,53 @@ namespace Task_Management_Application_Practice.Forms
             newtask.Show();
             this.Close();
         }
-
+        private string newkey;//declare field at class level, will be used in the btnSave event
         private void btnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using(SqlCommand insertdata = new SqlCommand(SQLInsertQuery.InsertNewTask, PIZZAHUT.DB_Conn))//add data into new task table
+                {
+
+                    insertdata.Connection.Open();
+                    insertdata.Parameters.AddWithValue("@TITLE", txtbxTitle.Text);
+                    insertdata.Parameters.AddWithValue("@DUEDATE", dtpDueDate.Value );
+                    insertdata.Parameters.AddWithValue("@PRIORITY", cmboPriority.SelectedValue);
+                    insertdata.Parameters.AddWithValue("@CREATEDBY", LoginFrm.GlobalVariable.LoggedInUser);
+                    insertdata.ExecuteNonQuery();
+                    object newPrimaryKey = insertdata.ExecuteScalar();//pulls back newly created primary key
+                    newkey = newPrimaryKey.ToString();//new string set to the newly created primary key to use then in insert statement for related tables
+                    insertdata.Connection.Close();
+                }
+                using(SqlCommand InsertAssignmentTable = new SqlCommand(SQLInsertQuery.InsertNewAssignmentTable,PIZZAHUT.DB_Conn))//add relational data to assigned table
+                {
+                    InsertAssignmentTable.Connection.Open();
+                    InsertAssignmentTable.Parameters.AddWithValue("@TASKID", newkey);
+                    InsertAssignmentTable.Parameters.AddWithValue("@ASSIGNEDUSERID", cmboAssignedTo.SelectedValue);
+                    InsertAssignmentTable.ExecuteNonQuery();
+                    InsertAssignmentTable.Connection.Close();
+                }
+                if (rchtxtbxDescription.Text == "")
+                {
+                    //do nowthing
+                }
+                else
+                {
+                    //add description into table
+                    SqlCommand inserttaskdescription = new SqlCommand(SQLInsertQuery.InsertNewAddignmentDescription, PIZZAHUT.DB_Conn);
+                    inserttaskdescription.Connection.Open();
+                    inserttaskdescription.Parameters.AddWithValue("@DESCRIPTION", rchtxtbxDescription.Text);
+                    inserttaskdescription.Parameters.AddWithValue("TASKID", newkey);
+                    inserttaskdescription.ExecuteNonQuery();
+                    inserttaskdescription.Connection.Close();
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("error" + ex);
+            }
 
         }
     }

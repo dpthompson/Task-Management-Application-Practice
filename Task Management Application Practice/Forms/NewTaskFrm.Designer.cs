@@ -46,7 +46,7 @@ namespace Task_Management_Application_Practice.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 79);
+            this.label1.Location = new System.Drawing.Point(73, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
@@ -64,7 +64,7 @@ namespace Task_Management_Application_Practice.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(473, 68);
+            this.label3.Location = new System.Drawing.Point(474, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace Task_Management_Application_Practice.Forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(583, 68);
+            this.label5.Location = new System.Drawing.Point(584, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 4;

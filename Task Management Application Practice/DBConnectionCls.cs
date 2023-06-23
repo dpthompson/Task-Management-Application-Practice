@@ -38,5 +38,11 @@ namespace Task_Management_Application_Practice
                                           " VALUES(@FIRSTNAME, @LASTNAME, @EMAIL, @ROLEID, GETDATE(), @USERNAME)";
         public static string InsertPassword = "INSERT INTO Password (UserID, PassWord)" +
                                               " Values(@USERID, @PASSWORD)";
+        public static string InsertNewTask = "  Insert Into New_Task_Table (Title,DueDate,Priority,CreatedBy)" +
+                                             " VALUES(@TITLE, @DUEDATE, @PRIORITY, @CREATEDBY) SELECT SCOPE_IDENTITY()";
+        public static string InsertNewAssignmentTable = "Insert Into Assignment_Table(TaskID,Assigned_UserID,AssignedDate)" +
+                                                        "VALUES(@TASKID, @ASSIGNEDUSERID, GETDATE())";
+        public static string InsertNewAddignmentDescription = "  Insert Into TaskTableDetails(TaskID,Description)" +
+                                                              "VALUES(@TASKID, @DESCRIPTION)";
     }
 }

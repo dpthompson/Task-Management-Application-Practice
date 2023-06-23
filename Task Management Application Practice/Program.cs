@@ -17,9 +17,9 @@ namespace Task_Management_Application_Practice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginFrm());
+            Application.Run(new LoginFrm());
             //for testing
-            Application.Run(new NewTaskFrm());
+            //Application.Run(new NewTaskFrm());
         }
     }
 }
