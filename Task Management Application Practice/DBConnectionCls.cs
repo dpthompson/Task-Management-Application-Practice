@@ -10,8 +10,10 @@ namespace Task_Management_Application_Practice
 {
     class DBConnectionCls
     {
-    }
+     public string txtpassworjd = "123";
+    } 
 
+   
     public static class PIZZAHUT
     {
         public static string txtpassword = File.ReadAllText("C:/Users/msi3070/Documents/Visual Studio 2019/SQL_PASS.txt");//get password from local txt file
@@ -26,6 +28,8 @@ namespace Task_Management_Application_Practice
         public static string GetCreatedPrimaryKey = "SELECT SCOPE_IDENTITY() AS NewPrimaryKey";//couldnt get to work =(
         public static string GetCreatedUserID = "select UserID From User_Table where username = @USERNAME";
         public static string PopulateAssignmentGridView = "Select TaskID,Title,DueDate,Priority from New_Task_Table order by Priority,DueDate";//used to populate the datagrid view on the view task form
+        public static string cmbobxAsignto = "select Userid, CONCAT(FirstName,' ', LastName) as Name From User_Table order by FirstName";//used to populate cmbobxAsignto on newtaskfrm
+        public static string cmbobxGetPririty = "Select Priority, PriorityDesc from Priority order by Priority";// used to populate cmboboxpriority on newtaskfrm
     }
 
     public static class SQLInsertQuery

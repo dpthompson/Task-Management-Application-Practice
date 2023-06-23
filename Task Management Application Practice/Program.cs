@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Task_Management_Application_Practice.Forms;
 
 namespace Task_Management_Application_Practice
 {
@@ -16,7 +17,9 @@ namespace Task_Management_Application_Practice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginFrm());
+            //Application.Run(new LoginFrm());
+            //for testing
+            Application.Run(new NewTaskFrm());
         }
     }
 }

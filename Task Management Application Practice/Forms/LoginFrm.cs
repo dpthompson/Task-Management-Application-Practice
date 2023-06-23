@@ -19,7 +19,7 @@ namespace Task_Management_Application_Practice
         }
 
         string username;//passed in username that user types in
-        string usernameAudit;//used to audit against typed in username
+
 
 
         //practice putting the sql connection string in various locations
