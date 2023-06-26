@@ -34,8 +34,9 @@ namespace Task_Management_Application_Practice
 
     public static class SQLInsertQuery
     {
-        public static string InsertUser = "INSERT INTO User_Table (FirstName,LastName,Email,RoleID,CreatedDate,Username)" +
-                                          " VALUES(@FIRSTNAME, @LASTNAME, @EMAIL, @ROLEID, GETDATE(), @USERNAME)";
+        //public static string InsertUser = "INSERT INTO User_Table (FirstName,LastName,Email,RoleID,CreatedDate,Username)" +
+        //                                  " VALUES(@FIRSTNAME, @LASTNAME, @EMAIL, @ROLEID, GETDATE(), @USERNAME)";
+        public static string InsertUser = "InsertUser";//calls a stored procedure
         public static string InsertPassword = "INSERT INTO Password (UserID, PassWord)" +
                                               " Values(@USERID, @PASSWORD)";
         public static string InsertNewTask = "  Insert Into New_Task_Table (Title,DueDate,Priority,CreatedBy)" +

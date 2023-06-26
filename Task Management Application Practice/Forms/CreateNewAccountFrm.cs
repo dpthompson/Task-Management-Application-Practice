@@ -64,12 +64,13 @@ namespace Task_Management_Application_Practice
 
                         //creates new entries
                         SqlCommand insert = new SqlCommand(SQLInsertQuery.InsertUser, PIZZAHUT.DB_Conn);
+                        insert.CommandType = CommandType.StoredProcedure;//tells the command to execute as a stored procedure and not a regular sql statement
                         insert.Connection.Open();
-                        insert.Parameters.AddWithValue("@ROLEID", cmbobxRole.SelectedValue);
-                        insert.Parameters.AddWithValue("@FIRSTNAME", txtbxFirstName.Text);
-                        insert.Parameters.AddWithValue("@LASTNAME", txtbxLastName.Text);
-                        insert.Parameters.AddWithValue("@EMAIL", txtbxEmail.Text);
-                        insert.Parameters.AddWithValue("@USERNAME", txtbxUserName.Text);
+                        insert.Parameters.AddWithValue("@FirstName", txtbxFirstName.Text);
+                        insert.Parameters.AddWithValue("@LastName", txtbxLastName.Text);
+                        insert.Parameters.AddWithValue("@Email", txtbxEmail.Text);
+                        insert.Parameters.AddWithValue("@RoleID", cmbobxRole.SelectedValue);
+                        insert.Parameters.AddWithValue("@Username", txtbxUserName.Text);
                         insert.ExecuteNonQuery();
                         insert.Connection.Close();
 
@@ -97,7 +98,9 @@ namespace Task_Management_Application_Practice
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error" + ex);              
+                string errorMessage = "An error occurred: " + ex.Message;
+                MessageBox.Show(errorMessage);
+                MessageBox.Show("An error occurred: " + ex.ToString());
             }
         }
     }
