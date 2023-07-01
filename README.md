@@ -2,15 +2,15 @@
 Creating/updating task management application 
 this will include items listed below but not limited to:
 
-1.	User Registration and Login:
+1.	User Registration and Login: - complete
 •	Allow users to register an account with their username and password.
 •	Implement authentication and authorization to ensure secure access to the application.
-2.	Task Creation:
+2.	Task Creation: - complete
 •	Provide a form to create new tasks with fields such as title, description, due date, and priority.
 •	Store tasks in a database or file system.
-3.	Task Listing and Filtering:
+3.	Task Listing and Filtering: - in progress
 •	Display a list of tasks sorted by due date or priority.
-•	Implement filtering options to view tasks by status (completed, pending), priority, or due date range.
+•	Implement filtering options to view tasks by status (completed, pending), priority, or due date range. todo
 4.	Task Detail View:
 •	Implement a detailed view of each task showing its information and status.
 •	Allow users to update task details and mark tasks as completed.
