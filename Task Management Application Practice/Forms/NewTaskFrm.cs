@@ -61,7 +61,7 @@ namespace Task_Management_Application_Practice.Forms
                     insertdata.Parameters.AddWithValue("@DUEDATE", dtpDueDate.Value );
                     insertdata.Parameters.AddWithValue("@PRIORITY", cmboPriority.SelectedValue);
                     insertdata.Parameters.AddWithValue("@CREATEDBY", LoginFrm.GlobalVariable.LoggedInUser);
-                    insertdata.ExecuteNonQuery();
+                    //insertdata.ExecuteNonQuery();
                     object newPrimaryKey = insertdata.ExecuteScalar();//pulls back newly created primary key
                     newkey = newPrimaryKey.ToString();//new string set to the newly created primary key to use then in insert statement for related tables
                     insertdata.Connection.Close();
@@ -87,7 +87,11 @@ namespace Task_Management_Application_Practice.Forms
                     inserttaskdescription.Parameters.AddWithValue("TASKID", newkey);
                     inserttaskdescription.ExecuteNonQuery();
                     inserttaskdescription.Connection.Close();
-
+                    MessageBox.Show("Task Created");
+                    //close form and reopen other form
+                    ViewTasksFrm newtask = new ViewTasksFrm();
+                    newtask.Show();
+                    this.Close();
                 }
             }
 

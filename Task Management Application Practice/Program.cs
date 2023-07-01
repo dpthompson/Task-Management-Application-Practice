@@ -19,7 +19,7 @@ namespace Task_Management_Application_Practice
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginFrm());
             //for testing
-            //Application.Run(new NewTaskFrm());
+            //Application.Run(new ViewTasksFrm());
         }
     }
 }

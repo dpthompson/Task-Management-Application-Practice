@@ -28,6 +28,9 @@ namespace Task_Management_Application_Practice
                 pizza.Fill(datadata, "Tablename");
                 dataGridView1.DataSource = datadata.Tables["Tablename"];
                 dataGridView1.Columns["TaskID"].Visible = false;
+                DataGridViewRow firstRow = dataGridView1.Rows[0];//highlights the entire row
+                firstRow.Selected = true;//highlights the entire row
+                dataGridView1.RowHeadersVisible = false;//hides the index column
 
 
             }
@@ -48,5 +51,30 @@ namespace Task_Management_Application_Practice
             this.Close();
 
         }
+        //class used to pass the selected task id to the TaskDetailsFrm
+        public static class TTaskID
+        {
+            public static string TextData { get; set; }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            //public static string taskid = gridview1
+            TTaskID.TextData = dataGridView1.SelectedRows[0].Cells["TaskID"].Value.ToString();//sets the class taskid = to the selected row task id to then be passed to TaskDetailsFrm
+            TaskDetailsFrm newFrm = new TaskDetailsFrm();
+            newFrm.Show();
+            this.Close();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+                selectedRow.Selected = true;
+            }
+        }
+
+
     }
 }
