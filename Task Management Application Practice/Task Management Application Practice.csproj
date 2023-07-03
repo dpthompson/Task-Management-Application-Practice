@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\EditTaskFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditTaskFrm.Designer.cs">
+      <DependentUpon>EditTaskFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateNewAccountFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\CreateNewAccountFrm.resx">
       <DependentUpon>CreateNewAccountFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditTaskFrm.resx">
+      <DependentUpon>EditTaskFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>

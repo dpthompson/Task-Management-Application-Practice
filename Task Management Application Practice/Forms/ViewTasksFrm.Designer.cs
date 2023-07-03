@@ -33,6 +33,7 @@ namespace Task_Management_Application_Practice
             this.btnClose = new System.Windows.Forms.Button();
             this.btnNewTask = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +43,7 @@ namespace Task_Management_Application_Practice
             this.dataGridView1.Location = new System.Drawing.Point(153, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(380, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(441, 301);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -58,7 +59,7 @@ namespace Task_Management_Application_Practice
             // 
             // btnNewTask
             // 
-            this.btnNewTask.Location = new System.Drawing.Point(271, 387);
+            this.btnNewTask.Location = new System.Drawing.Point(153, 377);
             this.btnNewTask.Name = "btnNewTask";
             this.btnNewTask.Size = new System.Drawing.Size(75, 23);
             this.btnNewTask.TabIndex = 2;
@@ -68,7 +69,7 @@ namespace Task_Management_Application_Practice
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(364, 387);
+            this.btnDetails.Location = new System.Drawing.Point(260, 377);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(75, 23);
             this.btnDetails.TabIndex = 3;
@@ -76,11 +77,22 @@ namespace Task_Management_Application_Practice
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(396, 377);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "Edit Task";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // ViewTasksFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.btnNewTask);
             this.Controls.Add(this.btnClose);
@@ -99,5 +111,6 @@ namespace Task_Management_Application_Practice
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnNewTask;
         private System.Windows.Forms.Button btnDetails;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

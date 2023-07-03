@@ -31,7 +31,7 @@ namespace Task_Management_Application_Practice
                 DataGridViewRow firstRow = dataGridView1.Rows[0];//highlights the entire row
                 firstRow.Selected = true;//highlights the entire row
                 dataGridView1.RowHeadersVisible = false;//hides the index column
-
+                
 
             }
         }
@@ -52,15 +52,19 @@ namespace Task_Management_Application_Practice
 
         }
         //class used to pass the selected task id to the TaskDetailsFrm
-        public static class TTaskID
+        public static class PubVarToPass
         {
-            public static string TextData { get; set; }
+            public static string TaskID { get; set; }
+            public static string DueDate { get; set; }
+            public static string Priority { get; set; }
+            public static string AssignToZ { get; set; }
+            public static bool Completed { get; set; }
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
             //public static string taskid = gridview1
-            TTaskID.TextData = dataGridView1.SelectedRows[0].Cells["TaskID"].Value.ToString();//sets the class taskid = to the selected row task id to then be passed to TaskDetailsFrm
+            PubVarToPass.TaskID = dataGridView1.SelectedRows[0].Cells["TaskID"].Value.ToString();//sets the class taskid = to the selected row task id to then be passed to TaskDetailsFrm
             TaskDetailsFrm newFrm = new TaskDetailsFrm();
             newFrm.Show();
             this.Close();
@@ -75,6 +79,47 @@ namespace Task_Management_Application_Practice
             }
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PubVarToPass.TaskID = dataGridView1.SelectedRows[0].Cells["TaskID"].Value.ToString();//sets the class taskid = to the selected row task id to then be passed to TaskDetailsFrm
+                PubVarToPass.DueDate = dataGridView1.SelectedRows[0].Cells["DueDate"].Value.ToString();
+                PubVarToPass.Priority = dataGridView1.SelectedRows[0].Cells["Priority"].Value.ToString();
+                using (SqlCommand sqlCommand = new SqlCommand(SQLQuery.GetEditFrmData, PIZZAHUT.DB_Conn))
+                {
+                    sqlCommand.Parameters.AddWithValue("@TaskID", PubVarToPass.TaskID);
+                    sqlCommand.Connection.Open();
+                    using (SqlDataReader read = sqlCommand.ExecuteReader())
+                    {
+                        
+                        if(read.Read())
+                        {
+                            //something is present
+                            PubVarToPass.AssignToZ = read.GetString(3);
+                            PubVarToPass.Priority = read.GetString(2);
+                            
+                        }
+                        else
+                        {
+                            //nothing is present
+                        }
+                    }
+                    sqlCommand.Connection.Close();
+                }
+                PubVarToPass.Completed = (bool)dataGridView1.SelectedRows[0].Cells["Completion"].Value;
 
+                //open new form
+                EditTaskFrm newFrm = new EditTaskFrm();
+                newFrm.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+                
+            }
+
+        }
     }
 }

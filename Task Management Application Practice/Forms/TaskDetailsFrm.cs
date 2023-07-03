@@ -26,29 +26,31 @@ namespace Task_Management_Application_Practice
                 {
 
                     adapter.SelectCommand.CommandType = CommandType.StoredProcedure;//tells  adapter to use a stored procedure vs normal query
-                    adapter.SelectCommand.Parameters.AddWithValue("@TaskID", ViewTasksFrm.TTaskID.TextData);
+                    adapter.SelectCommand.Parameters.AddWithValue("@TaskID", ViewTasksFrm.PubVarToPass.TaskID);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet, "Table");
                     dataGridView1.DataSource = dataSet.Tables["Table"];
-
+                    dataGridView1.Columns["TaskID"].Visible = false;
                 }
 
                 using (SqlCommand sqlCom = new SqlCommand(SQLQuery.GetDesc, PIZZAHUT.DB_Conn))//populating rich textbox
                 {
                     sqlCom.Connection.Open();
-                    sqlCom.Parameters.AddWithValue("TaskID", ViewTasksFrm.TTaskID.TextData);
-                    SqlDataReader reader = sqlCom.ExecuteReader();
+                    sqlCom.Parameters.AddWithValue("TaskID", ViewTasksFrm.PubVarToPass.TaskID);
 
-                    if(reader.Read())//reader.read must be called first before reader.getstring
+                    using (SqlDataReader reader = sqlCom.ExecuteReader())//adding using so connection automatically closes
                     {
-                        //there is something
-                        rchtxtbxDescription.Text = reader.GetString(0);
+                        if (reader.Read())//reader.read must be called first before reader.getstring
+                        {
+                            //there is something
+                            rchtxtbxDescription.Text = reader.GetString(0);
+                        }
+                        else
+                        {
+                            //nothing
+                        }
                     }
-                    else
-                    {
-                        //nothing
-                    }
-                
+               
                 }
             }
             catch (Exception ex)
@@ -56,6 +58,13 @@ namespace Task_Management_Application_Practice
                 MessageBox.Show("err" + ex.Message);
             }
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            ViewTasksFrm frm3 = new ViewTasksFrm();
+            frm3.Show();
+            this.Close();
         }
     }
 }
